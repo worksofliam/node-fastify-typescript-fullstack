@@ -1,0 +1,11 @@
+{
+  "name": "frontend",
+  "version": "0.0.0",
+  "scripts": {
+    "postinstall": "npm run specgen",
+    "specgen": "openapi -i ../spec/spec.yaml -o src/client -c fetch"
+  },
+  "devDependencies": {
+    "openapi-typescript-codegen": "^0.25.0"
+  }
+}

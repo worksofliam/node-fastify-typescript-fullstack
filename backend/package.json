@@ -1,0 +1,34 @@
+{
+  "name": "myapp",
+  "version": "1.0.0",
+  "description": "Backend API",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "vitest",
+    "dev": "tsc -p tsconfig.json && node dist/index.js",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "postinstall": "npm run types",
+    "types": "openapi -i ../spec/spec.yaml -o src/types --exportCore false --exportServices false --exportSchemas false --exportModels true --useUnionTypes --indent 2"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cors": "^8.4.1",
+    "@fastify/jwt": "^7.2.4",
+    "fastify": "^4.24.3",
+    "fastify-openapi-glue": "^4.4.2",
+    "node-ssh": "^13.1.0",
+    "octokit": "^3.1.2",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.6",
+    "yaml": "^2.3.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.9.2",
+    "openapi-typescript-codegen": "^0.25.0",
+    "typescript": "^5.3.2",
+    "vitest": "^3.0.9"
+  }
+}

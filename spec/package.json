@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "update": "cd ../backend && npm run types && cd ../ui && npm run specgen"
+  }
+}

@@ -1,0 +1,102 @@
+openapi: 3.0.0
+info:
+  title: project
+  version: '1.0'
+  contact:
+    name: Liam Allan
+    url: GitHub.com/worksofliam
+    email: liama@me.cm
+  license:
+    name: Private
+    url: me.com
+  description: Simple OpenAPI demo
+servers:
+  - url: 'http://localhost:8080'
+paths:
+  /login:
+    post:
+      summary: User Login
+      operationId: doLogin
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                required:
+                  - token
+        '401':
+          description: Unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+                - username
+                - password
+      description: User login (AuthN)
+  /data:
+    get:
+      summary: List some data
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimpleData'
+      operationId: getData
+      security:
+        - jwt: []
+      parameters: []
+      description: Show some data
+    put:
+      summary: Set some data
+      operationId: setData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimpleData'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimpleData'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SimpleData'
+      security:
+        - jwt: []
+      description: Set some data
+components:
+  schemas:
+    SimpleData:
+      title: Simple Data
+      type: object
+      properties:
+        someData:
+          type: string
+      required:
+        - someData
+  securitySchemes:
+    jwt:
+      type: http
+      scheme: bearer
+      description: ''

@@ -1,0 +1,7 @@
+node_modules
+*.sqlite
+.env
+keys.json
+dist/*
+!dist/static/
+src/types
